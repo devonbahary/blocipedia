@@ -8,6 +8,31 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <header>
+      <div class="clearfix">
+        <div id="account">
+          <% if user_signed_in? %>
+            <div class="btn-group">
+              <div class="btn btn-primary"><%= current_user.email %></div>
+              <% link_to 'Edit Profile', edit_user_registration_path, :class => 'btn btn-secondary' %>
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'btn btn-secondary' %>
+            </div>
+          <% else %>
+            <div class="btn-group">
+              <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-secondary" %>
+              <%= link_to "Sign In", new_user_session_path, :class => "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="alert-warning">
+        <p class="notice alert"><%= notice %><%= alert %></p>
+      </div>
+      
+    </header>
+
+    
+    
 
     <%= yield %>
 
