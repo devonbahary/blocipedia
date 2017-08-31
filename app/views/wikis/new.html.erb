@@ -1,0 +1,40 @@
+<div class="container">
+  
+  <h1>New Wiki</h1>
+  
+  <div class="row">
+    <div class="col-md-4">
+      <p>Guidelines for wikis:</p>
+      <ul>
+        <li>We</li>
+        <li>Invite</li>
+        <li>Kinky</li>
+        <li>Indigo</li>
+        <li>Snakes</li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <%= form_for @wiki do |f| %>
+        <div class="field form-group">
+          <%= f.label :title, class: 'text-muted' %>
+          <%= f.text_field :title, autofocus: true, class: 'form-control'. placeholder: "Enter wiki title" %>
+        </div>
+        
+        <div class="field form-group">
+          <%= f.label :body, class: 'text-muted' %>
+          <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki body" %>
+        </div>
+        
+        <div class="field form-check">
+          <%= f.check_box :private %>
+          <%= f.label :private, class: 'form-check-label' %>
+        </div>
+        
+        <div class="actions form-group">
+          <%= f.submit "Post Wiki", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+</div>
