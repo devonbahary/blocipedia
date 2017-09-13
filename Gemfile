@@ -22,6 +22,8 @@ source 'https://rubygems.org'
  gem 'figaro'
  # authentication
  gem 'devise' 
+ # authorization
+ gem 'pundit'
 
  group :development, :test do
    gem 'byebug'
