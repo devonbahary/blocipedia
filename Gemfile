@@ -24,6 +24,8 @@ source 'https://rubygems.org'
  gem 'devise' 
  # authorization
  gem 'pundit'
+ # payment integration
+ gem 'stripe'
 
  group :development, :test do
    gem 'byebug'

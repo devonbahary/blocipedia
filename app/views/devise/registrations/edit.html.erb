@@ -1,43 +1,56 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+<div class="container">
+  <section class="col-md-6">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= devise_error_messages! %>
+    
+      <div class="field form-group">
+        <%= f.label :email, class: 'text-muted' %><br />
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+    
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+    
+      <div class="field form-group">
+        <%= f.label :password, class: 'text-muted' %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+        <% if @minimum_password_length %>
+          <span class="text-muted"><em><%= @minimum_password_length %> characters minimum</em></span>
+        <% end %>
+      </div>
+    
+      <div class="field form-group">
+        <%= f.label :password_confirmation, class: 'text-muted' %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+      </div>
+    
+      <div class="field form-group">
+        <%= f.label :current_password, class: 'text-muted' %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
+      </div>
+    
+      <div class="actions form-group">
+        <%= f.submit "Update", class: 'btn btn-success' %>
+      </div>
     <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+    
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+  </section>
+  
+  <section class="col-md-6">
+    <h2>Membership</h2>
+    <div class="container">
+      <% if current_user.role == "standard" %>
+        <button type="button" class="btn btn-lg">Standard</button>
+        <%= link_to "Upgrade to Premium", new_charge_path, class: "btn btn-primary btn-lg" %>
+      <% elsif current_user.role == "premium" %>
+        <button type="button" class="btn btn-primary btn-lg">Premium</button>
+        <button type="button" class="btn btn-danger btn-lg" onclick=confirmDowngrade()>Downgrade to Standard</button> 
+        <!--<%= link_to "Downgrade to Standard", downgrade_membership_path, :method => :put, class: 'btn btn-lg btn-danger' %>-->
+      <% end %>
+    </div>
+  </section>
+</div>

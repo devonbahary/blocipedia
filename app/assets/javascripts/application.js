@@ -16,3 +16,8 @@
 //= require bootstrap
 //= require_tree .
 
+function confirmDowngrade() {
+  if (confirm("Are you sure you want to downgrade your membership?")) {
+    window.location.href = "/downgrade_membership";
+  }
+}

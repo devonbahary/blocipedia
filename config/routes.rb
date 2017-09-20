@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :charges, only: [:new, :create]
+
   resources :wikis
 
   devise_for :users
   
-  get 'about' => 'welcome#about'
-  
   root 'welcome#index'
+  
+  get 'downgrade_membership' => 'application#downgrade_membership'
 
 end
