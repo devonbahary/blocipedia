@@ -25,10 +25,7 @@
           <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki body" %>
         </div>
         
-        <div class="field form-check">
-          <%= f.check_box :private %>
-          <%= f.label :private, class: 'form-check-label' %>
-        </div>
+        <%= render partial: 'form', locals: {f: f} %>
         
         <div class="actions form-group">
           <%= f.submit "Post Wiki", class: 'btn btn-primary' %>

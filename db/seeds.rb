@@ -2,7 +2,7 @@ require 'random_data'
 require 'faker'
 
 # Create Users 
-10.times do 
+4.times do 
   User.create!(
     email: Faker::Internet.unique.email,
     password: Faker::Internet.password
@@ -10,8 +10,9 @@ require 'faker'
 end
 
 # Create Wikis
-50.times do 
+10.times do 
   Wiki.create!(
+    user: User.all.sample,
     title: Faker::HitchhikersGuideToTheGalaxy.starship,
     body: Faker::HitchhikersGuideToTheGalaxy.quote,
     private: Faker::Boolean.boolean
