@@ -13,8 +13,7 @@
         <div id="account">
           <% if user_signed_in? %>
             <div class="btn-group">
-              <div class="btn btn-primary"><%= current_user.email %></div>
-              <% link_to 'Edit Profile', edit_user_registration_path, :class => 'btn btn-secondary' %>
+              <%= link_to current_user.email, edit_user_registration_path, class: "btn btn-primary" %>
               <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'btn btn-secondary' %>
             </div>
           <% else %>
