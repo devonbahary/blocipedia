@@ -1,6 +1,7 @@
 class WikisController < ApplicationController
   before_action :authorize_user, only: [:show, :edit]
   
+  
   def index
     @wikis = Wiki.all
   end
@@ -34,6 +35,8 @@ class WikisController < ApplicationController
   end
   
   def update
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
