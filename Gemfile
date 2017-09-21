@@ -26,6 +26,8 @@ source 'https://rubygems.org'
  gem 'pundit'
  # payment integration
  gem 'stripe'
+ # Markdown parser
+ gem 'redcarpet'
 
  group :development, :test do
    gem 'byebug'
