@@ -18,6 +18,8 @@
 
 function confirmDowngrade() {
   if (confirm("Are you sure you want to downgrade your membership?")) {
-    window.location.href = "/downgrade_membership";
+    if (confirm("All authored private wikis will become public. Continue?")) {
+      window.location.href = "/downgrade_membership";
+    }
   }
 }
