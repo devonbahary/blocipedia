@@ -1,4 +1,5 @@
 <div class="container">
+  <%= link_to "View Wikis", wikis_path, class: 'btn btn-primary' %>
   
   <h1>New Wiki</h1>
   
@@ -18,7 +19,7 @@
           <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki body" %>
         </div>
         
-        <%= render partial: 'form', locals: {f: f} %>
+        <%= render partial: 'private', locals: {f: f, wiki: @wiki} %>
         
         <div class="actions form-group">
           <%= f.submit "Post Wiki", class: 'btn btn-primary' %>

@@ -1,24 +1,43 @@
 <div class="container">
+  <%= link_to "View Wikis", wikis_path, class: 'btn btn-primary' %>
   
   <h1>Edit Wiki</h1>
   
   <div class="row">
     <div class="col-md-4">
+      <hr>
       <%= render partial: 'guidelines' %>
+      <hr>
+      <%= render partial: 'contributors', locals: {wiki: @wiki} %>
     </div>
     <div class="col-md-8">
+      <h4 class="text-muted">Author: <%= @wiki.user.email %></h4>
       <%= form_for @wiki do |f| %>
+        <!-- title -->
         <div class="field form-group">
           <%= f.label :title, class: 'text-muted' %>
           <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: "Enter wiki title" %>
         </div>
-        
+        <!-- body -->
         <div class="field form-group">
           <%= f.label :body, class: 'text-muted' %>
           <%= f.text_area :body, class: 'form-control', placeholder: "Enter wiki body" %>
         </div>
         
-        <%= render partial: 'form', locals: {f: f} %>
+        <% if user_has_collaboration_permissions?(@wiki) %>
+          <div class="col-md-4 field form-group">
+            <%= f.label :add_contributors, class: 'text-muted' %><br>
+            <%= select("add_collaborator", "collaborator_id", @prospective_collaborators.collect { |c| [c.email, c.id] }, {}, { multiple: true }) %>
+          </div>
+          <div class='cold-md-4 field form-group'>
+            <%= f.label :remove_contributors, class: 'text-muted' %><br>
+            <%= select("remove_collaborator", "collaborator_id", @current_collaborators.collect { |c| [c.email, c.id] }, {}, { multiple: true }) %>
+          </div>
+        <% end %>
+        
+        <br>
+        <%= render partial: 'private', locals: {f: f, wiki: @wiki} %>
+      
         
         <div class="actions form-group">
           <%= f.submit "Edit Wiki", class: 'btn btn-success' %>

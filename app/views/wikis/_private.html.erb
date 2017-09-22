@@ -1,7 +1,7 @@
 <% if current_user.admin? || current_user.premium? %>
   <div class="field form-check">
     <%= f.label :private, class: 'form-check-label' do %>
-      <%= f.check_box :private %> Private wiki
+      <%= f.check_box :private, {checked: wiki.private} %> Private wiki
     <% end %>
   </div>
 <% end %>

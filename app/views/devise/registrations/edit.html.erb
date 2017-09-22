@@ -49,7 +49,6 @@
       <% elsif current_user.role == "premium" %>
         <button type="button" class="btn btn-primary btn-lg">Premium</button>
         <button type="button" class="btn btn-danger btn-lg" onclick=confirmDowngrade()>Downgrade to Standard</button> 
-        <!--<%= link_to "Downgrade to Standard", downgrade_membership_path, :method => :put, class: 'btn btn-lg btn-danger' %>-->
       <% end %>
     </div>
   </section>
